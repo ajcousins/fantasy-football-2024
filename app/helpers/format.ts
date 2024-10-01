@@ -1,8 +1,14 @@
 'use client';
-import { Player } from '../dataSource/premierLeague';
 
-export const costFormatter = (_: unknown, row: Player) => {
-  const costArr = row.now_cost.toString().split('');
-  costArr.splice(costArr.length - 1, 0, '.');
-  return costArr.join('');
+import { Player } from "../types/premierLeague";
+
+export const decimaliseString = (numString: string): string => {
+  // Adds a decimal infront of last character
+  const arr = numString.split('');
+  arr.splice(arr.length - 1, 0, '.');
+  return arr.join('');
+};
+
+export const costFormatter = (_: unknown, row: Player): string => {
+  return decimaliseString(row.now_cost.toString());
 };

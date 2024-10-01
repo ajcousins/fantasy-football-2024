@@ -113,3 +113,10 @@ export type Player = {
   starts_per_90: number;
   clean_sheets_per_90: number;
 };
+
+export interface AppendedPlayer extends Player {
+  teamShortName: string;
+  costValue: string;
+  formValue: string;
+  position: string;
+}

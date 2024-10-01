@@ -1,3 +1,7 @@
+.page h2 {
+  margin-bottom: 1em;
+}
+
 .page {
   font-family: var(--font-roboto-condensed);
   margin: 1rem;
@@ -9,3 +13,4 @@
 
 .table-wrapper {
 }
+

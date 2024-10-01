@@ -78,7 +78,7 @@ export default async function Home() {
       </section>
       <div className={styles['table-wrapper']}>
         <DataGrid
-          rows={playersSortedByFormValue}
+          rows={appendedPlayers}
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[10, 20, 50, 100]}
