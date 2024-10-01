@@ -1,7 +1,11 @@
 .page {
   font-family: var(--font-roboto-condensed);
+  margin: 1rem;
+}
+
+.cards-wrapper {
+  
 }
 
 .table-wrapper {
-  margin: 1rem;
 }

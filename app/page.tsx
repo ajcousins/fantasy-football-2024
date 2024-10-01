@@ -1,8 +1,8 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import styles from "./page.module.css";
-import { getData } from "./dataSource/premierLeague";
+import { getData, positions } from "./dataSource/premierLeague";
 import { costFormatter } from './helpers/format';
-import { positions } from './types/premierLeague';
+import Cards from './components/Cards/Cards';
 
 export default async function Home() {
   const { players, teams } = await getData();
@@ -12,9 +12,9 @@ export default async function Home() {
     const teamId = player.team_code;
     const team = teamMap.get(teamId)
     const teamShortName = team ? team.short_name : ''
-    const costValue = (player.total_points / player.now_cost).toFixed(3)
-    const formValue = (Number(player.form) / player.now_cost).toFixed(3)
-    const position = positions[player.element_type]
+    const costValue = (player.total_points / player.now_cost * 10).toFixed(3)
+    const formValue = (Number(player.form) / player.now_cost * 10).toFixed(3)
+    const position = positions[player.element_type].short
 
     return {
       ...player,
@@ -50,7 +50,7 @@ export default async function Home() {
       field: 'costValue',
       headerName: 'Cost Value (tp / c)',
       type: 'number',
-      width: 130,
+      width: 160,
     },
     {
       field: 'formValue',
@@ -60,13 +60,25 @@ export default async function Home() {
     },
   ];
 
-  const paginationModel = { page: 0, pageSize: 10 };
+  const paginationModel = { page: 0, pageSize: 20 };
+
+  const playersSortedByFormValue = appendedPlayers.sort((a, b) => {
+    if (a.formValue > b.formValue) return -1;
+    if (a.formValue < b.formValue) return 1;
+    return 0;
+  }).slice(0, 5)
 
   return (
     <div className={styles.page}>
+      <section>
+        <h2>Top Over-Performers</h2>
+        <div className={styles['cards-wrapper']}>
+          <Cards players={playersSortedByFormValue} teamMap={teamMap}/>
+        </div>
+      </section>
       <div className={styles['table-wrapper']}>
         <DataGrid
-          rows={appendedPlayers}
+          rows={playersSortedByFormValue}
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[10, 20, 50, 100]}
