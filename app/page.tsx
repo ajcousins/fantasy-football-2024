@@ -3,9 +3,13 @@ import styles from "./page.module.css";
 import { getData, positions } from "./dataSource/premierLeague";
 import { costFormatter } from './helpers/format';
 import Cards from './components/Cards/Cards';
+import { getNextEvents } from './helpers/gameEvents';
+import { DetailedTeam, getDetailedTeamMap, totalRunInDifficulties } from './helpers/teams';
+import { TeamCards } from './components/Teams/Teams';
+import { TableWrapper } from './components/TableWrapper/TableWrapper';
 
 export default async function Home() {
-  const { players, teams } = await getData();
+  const { players, teams, events } = await getData();
   const teamMap = new Map(teams.map(team => [team.code, team]))
 
   const appendedPlayers = players.map(player => {
@@ -66,16 +70,32 @@ export default async function Home() {
     if (a.formValue > b.formValue) return -1;
     if (a.formValue < b.formValue) return 1;
     return 0;
-  }).slice(0, 5)
+  }).slice(0, 10)
+
+  const nextEvents = getNextEvents(5, events);
+  const detailedTeamMap = await getDetailedTeamMap(teams, events, nextEvents.map(e => e.id))
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const teamArr = Array.from(detailedTeamMap, ([_, value]) => (value)) as DetailedTeam[]
+  const teamArrFavourablySorted = teamArr.sort((a, b) => {
+    const a_runInTotal = a.runIn.reduce(totalRunInDifficulties, 0)
+    const b_runInTotal = b.runIn.reduce(totalRunInDifficulties, 0)
+    return a_runInTotal > b_runInTotal ? 1 : -1
+  })
 
   return (
     <div className={styles.page}>
-      <section>
-        <h2>Top Over-Performers</h2>
-        <div className={styles['cards-wrapper']}>
-          <Cards players={playersSortedByFormValue} teamMap={teamMap}/>
-        </div>
-      </section>
+      <TableWrapper
+        heading='Teams'
+        subHeading='Sorted by fixture difficulty'
+      >
+        <TeamCards teams={teamArrFavourablySorted} />
+      </TableWrapper>
+      <TableWrapper
+        heading='Value for Money'
+        subHeading='Sorted by Form Value (form / cost)'
+      >
+        <Cards players={playersSortedByFormValue} teamMap={teamMap} />
+      </TableWrapper>
       <div className={styles['table-wrapper']}>
         <DataGrid
           rows={appendedPlayers}

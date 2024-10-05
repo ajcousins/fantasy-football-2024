@@ -17,10 +17,9 @@ interface IProps {
 }
 
 const Cards = ({ players, teamMap }: IProps) => {
-  // console.log('players:', players);
   return (
     <div>
-      {players.map((p, i) => {
+      {players.map((p) => {
         const team = teamMap.get(p.team_code);
         const stats = [
           {
@@ -40,16 +39,14 @@ const Cards = ({ players, teamMap }: IProps) => {
             stat: p.total_points,
           },
         ]
-        // console.log('team:', team);
         if (!team) return null;
 
         return <div key={p.web_name} className={styles.card}>
           <img src={`${RESOURCE_URL}${IMG_SIZE}/p${p.code}.png`} alt={`${p.second_name}`} />
           <div className={styles['card_player_info']}>
-            <h3>{i + 1}</h3>
             <span className={styles['card_position']}>{positions[p.element_type].long}</span>
             <h4>{p.first_name} {p.second_name}</h4>
-            <p>{team.name}</p>
+            <p className={styles['card_sub-title']}>{team.name}</p>
           </div>
           <div className={styles['card_stat_wrapper']}>
             {stats.map(s => (<div key={`${p.web_name}_${s.label}_stat`} className={styles['card_player_stat']}>

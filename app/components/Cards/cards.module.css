@@ -1,24 +1,27 @@
 .card {
-  /* background-color: cyan; */
-  /* height: 4rem; */
-  margin-bottom: 1em;
-  padding: 1em;
-  /* display: flex; */
+  background-color: var(--card-background);
+  margin-bottom: 0.2em;
+  padding: 0.5em;
+  width: fit-content;
   display: grid;
-  grid-template-columns: 130px 180px 130px;
-  /* border: 1px solid grey; */
-  border-radius: 10px;
-  box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+  grid-template-columns: 80px 180px 130px;
+  align-items: center;
+  border-radius: 3px;
+  box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px,
+    rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px,
+    rgba(42, 51, 70, 0.04) 0px 2px 2px -1px,
+    rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+    rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px,
+    rgba(42, 51, 70, 0.03) 0px 10px 10px -5px,
+    rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
 }
 
 .card img {
-  height: 6rem;
+  height: 4rem;
 }
 
 .card_player_info {
-  /* background-color: yellow; */
   margin-left: 2em;
-  padding-top: 1em;
 }
 
 .card_position {
@@ -26,28 +29,27 @@
   color: white;
   padding: 0 1em;
   font-size: 0.8em;
+  border-radius: 3px;
 }
 
 .card_stat_wrapper {
   margin-left: 1em;
-  padding-top: 1em;
 }
 
 .card_player_stat {
   font-size: 0.8rem;
-  /* background-color: cyan; */
-  margin-bottom: 0.5em;
-  /* width: 8rem; */
-
-  /* display: grid;
-  grid-template-columns: 1fr 1fr; */
+  margin-bottom: 0.2em;
+  grid-template-columns: 1fr 1fr;
 }
 
 .card_stat_label {
   display: inline-block;
   text-align: right;
-  /* background-color: yellow; */
   padding-right: 1em;
   width: 6em;
   font-weight: 300;
+}
+
+.card_sub-title {
+  font-size: 0.8rem;
 }

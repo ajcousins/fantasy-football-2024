@@ -1,16 +1,24 @@
-.page h2 {
-  margin-bottom: 1em;
-}
-
 .page {
   font-family: var(--font-roboto-condensed);
-  margin: 1rem;
-}
-
-.cards-wrapper {
-  
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 1em;
+  justify-items: center;
 }
 
 .table-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
+@media screen and (max-width: 930px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-wrapper,
+  .table-wrapper {
+    grid-column: 1 / -1;
+  }
+}
