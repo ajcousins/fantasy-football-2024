@@ -41,7 +41,7 @@ const Cards = ({ players, teamMap }: IProps) => {
         ]
         if (!team) return null;
 
-        return <div key={p.web_name} className={styles.card}>
+        return <div key={p.web_name} className={`${styles.card} card-border`}>
           <img src={`${RESOURCE_URL}${IMG_SIZE}/p${p.code}.png`} alt={`${p.second_name}`} />
           <div className={styles['card_player_info']}>
             <span className={styles['card_position']}>{positions[p.element_type].long}</span>

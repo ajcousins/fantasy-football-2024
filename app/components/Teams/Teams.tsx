@@ -18,7 +18,7 @@ const BADGE_URL = 'https://resources.premierleague.com/premierleague/badges/70/t
 export const TeamCards = ({ teams }: IProps) => {
   return (teams.map((team) => {
     return (
-      <div className={styles['team-card']} key={team.short_name}>
+      <div className={`${styles['team-card']} card-border`} key={team.short_name}>
         <img src={`${BADGE_URL}${team.code}.png`} alt={team.name} />
         {team.name}
         <div className={styles.fixtures}>

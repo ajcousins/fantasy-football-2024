@@ -7,6 +7,7 @@ import { getNextEvents } from './helpers/gameEvents';
 import { DetailedTeam, getDetailedTeamMap, totalRunInDifficulties } from './helpers/teams';
 import { TeamCards } from './components/Teams/Teams';
 import { TableWrapper } from './components/TableWrapper/TableWrapper';
+import ScatterChart from './components/ScatterChart/ScatterChart';
 
 export default async function Home() {
   const { players, teams, events } = await getData();
@@ -84,6 +85,14 @@ export default async function Home() {
 
   return (
     <div className={styles.page}>
+      {/* <TableWrapper
+        heading='Players'
+        subHeading='Cost against Form'
+      > */}
+      <div className={`${styles['table-wrapper']} card-border`}>
+        <ScatterChart players={appendedPlayers} />
+      </div>
+      {/* </TableWrapper> */}
       <TableWrapper
         heading='Teams'
         subHeading='Sorted by fixture difficulty'
@@ -96,7 +105,7 @@ export default async function Home() {
       >
         <Cards players={playersSortedByFormValue} teamMap={teamMap} />
       </TableWrapper>
-      <div className={styles['table-wrapper']}>
+      {/* <div className={styles['table-wrapper']}>
         <DataGrid
           rows={appendedPlayers}
           columns={columns}
@@ -104,7 +113,7 @@ export default async function Home() {
           pageSizeOptions={[10, 20, 50, 100]}
           sx={{ border: 0 }}
         />
-      </div>
+      </div> */}
     </div>
   );
 }
