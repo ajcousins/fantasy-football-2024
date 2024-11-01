@@ -105,7 +105,7 @@ export default async function Home() {
       >
         <Cards players={playersSortedByFormValue} teamMap={teamMap} />
       </TableWrapper>
-      {/* <div className={styles['table-wrapper']}>
+      <div className={styles['table-wrapper']}>
         <DataGrid
           rows={appendedPlayers}
           columns={columns}
@@ -113,7 +113,7 @@ export default async function Home() {
           pageSizeOptions={[10, 20, 50, 100]}
           sx={{ border: 0 }}
         />
-      </div> */}
+      </div>
     </div>
   );
 }
