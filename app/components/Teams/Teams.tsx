@@ -23,7 +23,6 @@ export const TeamCards = ({ teams }: IProps) => {
         {team.name}
         <div className={styles.fixtures}>
           {team.runIn.map((fixture, i) => {
-            console.log('fixture:', fixture);
             return (
               <div style={{ backgroundColor: `${difficultyColour[fixture.fixtureDifficulty]}` }} className={styles.fixture} key={`fixture_${i}`}>
                 {fixture.short_name}

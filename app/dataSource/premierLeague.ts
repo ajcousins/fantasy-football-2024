@@ -12,6 +12,7 @@ export const positions: Record<number, { short: string; long: string }> = {
   2: { short: 'DEF', long: 'Defender' },
   3: { short: 'MID', long: 'Midfielder' },
   4: { short: 'FWD', long: 'Forward' },
+  5: { short: 'MAN', long: 'Manager'},
 };
 
 export const getData = async (): Promise<{

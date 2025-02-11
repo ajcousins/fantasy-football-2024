@@ -28,7 +28,7 @@ export default async function Home() {
       formValue,
       position
     }
-  })
+  }).filter(player => player.position !== "MAN") // filter out managers
 
   const columns: GridColDef[] = [
     { field: 'web_name', headerName: 'Name', width: 150 },
